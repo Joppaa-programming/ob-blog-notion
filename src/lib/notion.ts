@@ -15,7 +15,7 @@ export const fetchPages = React.cache(() =>
     database_id: process.env.NOTION_DATABASE_ID!,
     filter: {
       property: "Status",
-      select: {
+      status: {
         equals: "Published",
       },
     },
@@ -27,10 +27,20 @@ export const fetchBySlug = React.cache((slug: string) =>
     .query({
       database_id: process.env.NOTION_DATABASE_ID!,
       filter: {
-        property: "Slug",
-        rich_text: {
-          equals: slug,
-        },
+        and: [
+          {
+            property: "Slug",
+            rich_text: {
+              equals: slug,
+            },
+          },
+          {
+            property: "Status",
+            status: {
+              equals: "Published",
+            },
+          },
+        ],
       },
     })
     .then((res) => res.results[0] as PageObjectResponse | undefined)
