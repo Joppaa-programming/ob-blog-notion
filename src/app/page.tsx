@@ -3,6 +3,7 @@ import Link from "next/link";
 
 export default async function Home() {
   const posts = await fetchPages();
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="">
@@ -11,7 +12,7 @@ export default async function Home() {
         {posts?.results?.map((post: any) => (
           <Link
             key={post.id}
-            href={`/blog/${post.properties.Slug.rich_text[0].plain_text}`}
+            href={`/blog/${post.properties.Slug?.formula.string}`}
           >
             <article>
               <h3>{post.properties.Title.title[0].plain_text}</h3>
