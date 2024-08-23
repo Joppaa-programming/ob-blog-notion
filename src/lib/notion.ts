@@ -1,10 +1,10 @@
+import "server-only";
 import { Client } from "@notionhq/client";
 import {
   BlockObjectResponse,
   PageObjectResponse,
 } from "@notionhq/client/build/src/api-endpoints";
 import React from "react";
-import "serve-only";
 
 export const notion = new Client({
   auth: process.env.NOTION_TOKEN,
