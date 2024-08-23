@@ -16,7 +16,7 @@ export const fetchPages = React.cache(() =>
     filter: {
       property: "Status",
       select: {
-        equals: "Done",
+        equals: "Published",
       },
     },
   })
