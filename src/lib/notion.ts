@@ -10,7 +10,7 @@ export const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
 
-export const fetchPages = React.cache(() =>
+export const fetchPages = React.cache((pageSize?: number, startCursor?: string) =>
   notion.databases.query({
     database_id: process.env.NOTION_DATABASE_ID!,
     filter: {
@@ -19,6 +19,8 @@ export const fetchPages = React.cache(() =>
         equals: "Published",
       },
     },
+    page_size: pageSize,
+    start_cursor: startCursor,
   })
 );
 
